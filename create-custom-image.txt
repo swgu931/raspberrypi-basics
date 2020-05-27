@@ -1,0 +1,26 @@
+# Create a custom Raspbian OS image for production.
+- ref : https://medium.com/platformer-blog/creating-a-custom-raspbian-os-image-for-production-3fcb43ff3630
+
+sudo apt-get install gparted
+
+## Step 1: Clone SD Card 
+sudo fdisk -l
+sudo dd if=/dev/sdb of=/your/path/to/clone.img
+
+
+## Step 2: Shrinking the Image
+
+wget  https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+chmod +x pishrink.sh
+sudo mv pishrink.sh /usr/local/bin
+
+sudo pishrink.sh /your/path/to/clone.img /your/path/to/clone-shrink.img
+
+## Step 3: Flash the image to a new SD Card
+
+
+## Step 4: Compress the image further
+
+gzip -9 /your/path/to/clone-shrink.img
+
+
