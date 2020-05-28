@@ -17,10 +17,11 @@ sudo mv pishrink.sh /usr/local/bin
 sudo pishrink.sh /your/path/to/clone.img /your/path/to/clone-shrink.img
 
 ## Step 3: Flash the image to a new SD Card
-
+ - Raspberry Pi imager was used in my case
 
 ## Step 4: Compress the image further
 
 gzip -9 /your/path/to/clone-shrink.img
 
+## then you can upload it to cloud storage and so on
 
