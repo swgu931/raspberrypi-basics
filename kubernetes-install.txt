@@ -1,0 +1,26 @@
+## 2. Kubernetes 설치 (Common for Master and worker node)
+- ref: https://medium.com/nycdev/k8s-on-pi-9cc14843d43
+
+sudo dphys-swapfile swapoff && \
+sudo dphys-swapfile uninstall && \
+sudo update-rc.d dphys-swapfile remove
+
+sudo swapon --summary
+
+sudo vi /boot/cmdline.txt
+-----
+cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
+-----
+
+sudo reboot
+
+vi /etc/apt/sources.list.d/kubernetes.list
+-----
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+-----
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+sudo apt-get update
+
+sudo apt-get install -qy kubeadm
