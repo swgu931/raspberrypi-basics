@@ -1,0 +1,7 @@
+# sshd install
+- ref: https://cccding.tistory.com/97
+
+
+sudo raspi-config
+  : 5. Interfacing Options --> P2 SSH
+  
