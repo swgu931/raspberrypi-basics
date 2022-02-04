@@ -24,3 +24,20 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 sudo apt-get update
 
 sudo apt-get install -qy kubeadm
+
+sudo kubeadm config images pull -v3
+sudo kubeadm init --token-ttl=0
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //' 
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+## on master and worker node
+sudo sysctl net.bridge.bridge-nf-call-iptables=1   
+
+## on worker node
+sudo kubeadm join --token <token> <master-node-ip>:6443 --discovery-token-ca-cert-hash sha256:<sha256>
