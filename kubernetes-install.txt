@@ -1,5 +1,6 @@
 ## 2. Kubernetes 설치 (Common for Master and worker node)
 - ref: https://medium.com/nycdev/k8s-on-pi-9cc14843d43
+       https://anthonynsimon.com/blog/kubernetes-cluster-raspberry-pi/
 
 sudo dphys-swapfile swapoff && \
 sudo dphys-swapfile uninstall && \
